@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="Javaee7JPAPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Categorias</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Pais</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Ciudades</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Noticias</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Usuarios</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Ubicacion</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Ocupaciones</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.Profesiones</class>
+    <class>org.ecabrerar.examples.javaee7.javaee7.jpa.entidades.TipoNoticias</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/noticias?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.password" value="rootweb"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>
