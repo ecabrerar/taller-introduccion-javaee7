@@ -1,0 +1,127 @@
+<!--
+
+    DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+
+    Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+
+    The contents of this file are subject to the terms of either the GNU
+    General Public License Version 2 only ("GPL") or the Common Development
+    and Distribution License("CDDL") (collectively, the "License").  You
+    may not use this file except in compliance with the License.  You can
+    obtain a copy of the License at
+    https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+    or packager/legal/LICENSE.txt.  See the License for the specific
+    language governing permissions and limitations under the License.
+
+    When distributing the software, include this License Header Notice in each
+    file and include the License file at packager/legal/LICENSE.txt.
+
+    GPL Classpath Exception:
+    Oracle designates this particular file as subject to the "Classpath"
+    exception as provided by Oracle in the GPL Version 2 section of the License
+    file that accompanied this code.
+
+    Modifications:
+    If applicable, add the following below the License Header, with the fields
+    enclosed by brackets [] replaced by your own identifying information:
+    "Portions Copyright [year] [name of copyright owner]"
+
+    Contributor(s):
+    If you wish your version of this file to be governed by only the CDDL or
+    only the GPL Version 2, indicate your decision by adding "[Contributor]
+    elects to include this software in this distribution under the [CDDL or GPL
+    Version 2] license."  If you don't indicate a single choice of license, a
+    recipient has the option to distribute your version of this file under
+    either the CDDL, the GPL Version 2 or to extend the choice of license to
+    its licensees as provided above.  However, if you add GPL Version 2 code
+    and therefore, elected the GPL Version 2 license, then the option applies
+    only if the new code is made subject to such option by the copyright
+    holder.
+
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+</h:head>
+
+    <h:outputStylesheet name="stylesheet.css" library="css"  />
+    <h1>Formulario de Registro</h1>
+<h:form p:oninput="calcularProgreso()" prependId="false">
+
+    <p>
+         <label>Nombre:</label>
+         <br/>
+         <input type="text" jsf:id="nombre" name="nombre" placeholder="Juan Perez" 
+                jsf:value="#{formularioBean.nombre}" required="required"/>
+    </p>
+    <p>
+         <label>Email:</label>
+         <br/>
+         <input type="email" jsf:id="email" name="email" jsf:value="#{formularioBean.email}" required="required"/>
+    </p>
+    <p>
+         <label>Confirmar:</label>
+         <br/>
+         <input type="email" jsf:id="validarEmail" name="validarEmail" jsf:value="#{formularioBean.emailValidacion}"
+          required="required" oninput="check(this)"/>
+    </p>
+    <p>
+         <label>Fecha de Llegada:</label>
+         <br/>
+         <input type="date" jsf:id="fecha" name="fecha" jsf:value="#{formularioBean.fecha}" required="required"/>
+    </p>
+    <p>
+        <label>Número de noche:</label>
+        <br/>
+        <h:inputText id="nights" p:type="number" value="#{formularioBean.noches}" p:min="1" p:max="30" p:required="required" 
+           p:title="Digitar un número entre 1 y 30.">
+           <f:ajax event="change" render="total" listener="#{formularioBean.calcularTotal}"/>
+        </h:inputText>
+    </p>
+    <p>
+        <label>Cantidad de personas:</label>
+        <br/>
+        <input jsf:id="personas" type="number" jsf:value="#{formularioBean.personas}" min="1" max="4" required="required" 
+           title="Digitar un número entre 1 y 4 .">
+           <f:ajax event="change" render="total" listener="#{formularioBean.calcularTotal}"/>
+        </input>
+    </p>
+    <p>
+        <label>Total:</label>
+        <br/>
+        <output jsf:id="total" name="total">#{formularioBean.total}</output>
+    </p>
+    <p>
+        <h:commandButton value="Hacer una Reservacion" action="confirmacion"/>
+        <input jsf:id="cancelar" name="cancelar" value="Cancelar" type="submit">
+           <f:ajax render="@all" listener="#{formularioBean.cancelar}"/>
+        </input>
+    </p>
+    <p>
+        <progress jsf:id="progressBar" max="100" jsf:value="0"/>
+    </p>
+
+</h:form>
+    
+<script>
+function check(input) {
+    if (input.value != document.getElementById('email').value) {
+        input.setCustomValidity('Los correos deben ser iguales.');
+    } else {
+        // input is valid -- reset the error message
+        input.setCustomValidity('');
+    }
+}
+
+function calcularProgreso() {
+    var bar = document.getElementById("progressBar");
+    bar.value += 5;
+}
+</script>
+
+</html>
