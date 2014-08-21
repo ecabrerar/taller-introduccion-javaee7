@@ -1,7 +1,7 @@
 taller-introduccion-javaee7
 ===========================
 
-
+Ver presentación en slideshare.net [Introducción a Java EE 7](http://www.slideshare.net/eudris/introduccin-a-java-ee-7-36661959)
 ####Requisitos:
 Para mejor entendiemiento es recomendable conocimientos básicos de Java
 
